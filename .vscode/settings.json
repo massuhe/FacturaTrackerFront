@@ -1,0 +1,8 @@
+{
+  "prettier.requireConfig": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  },
+  "javascript.format.enable": false
+}
