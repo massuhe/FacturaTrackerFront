@@ -19,6 +19,9 @@ const globalStyles = css`
     font-family: 'TrashHand';
     src: url(${trashHandFont}) format('woff2');
   }
+  * {
+    box-sizing: border-box;
+  }
   body {
     background: ${COLORS.gray};
     position: absolute;
@@ -26,7 +29,6 @@ const globalStyles = css`
     left: 0;
     bottom: 0;
     right: 0;
-    box-sizing: border-box;
   }
 `
 

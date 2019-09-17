@@ -1,5 +1,11 @@
 import { css } from '@emotion/core'
 
+export const FONT_FAMILIES = {
+  manjari: 'Manjari',
+  oregano: 'Oregano',
+  trashHand: 'TrashHand',
+}
+
 export const headerTitle = css`
   font-family: 'TrashHand';
   color: #ffc435;
