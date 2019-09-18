@@ -4,8 +4,8 @@ import COLORS from '../../theme/colors'
 import { FONT_FAMILIES } from '../../theme/fonts'
 
 interface IInputStyles {
-  input: string | SerializedStyles
-  label: string | SerializedStyles
+  input?: string | SerializedStyles
+  label?: string | SerializedStyles
 }
 
 interface IInputProps
@@ -18,7 +18,10 @@ interface IInputProps
   styles?: IInputStyles
 }
 
-const getStyles = (styles: any, fallback?: SerializedStyles) => {
+const getStyles = (styles: any, fallback: SerializedStyles): {
+  css: SerializedStyles
+  className?: string
+} => {
   if (!styles) {
     return { css: fallback }
   }
@@ -34,7 +37,7 @@ const getStyles = (styles: any, fallback?: SerializedStyles) => {
 
 const addErrorStyles = (inputStyles: {
   css: SerializedStyles
-  className: string
+  className?: string
 }) => {
   const errorStyles = css`
     border: solid 1px #ff8a8a;

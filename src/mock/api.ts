@@ -1,5 +1,5 @@
 import users from './users.json'
-import R from 'ramda'
+import * as R from 'ramda'
 
 const login = (userName: string, password: string): Promise<boolean> => {
   const authenticate = () => {

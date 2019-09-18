@@ -6,6 +6,8 @@ import eagleQuiet from '../assets/images/eagle-quiet.png'
 import eagleAngry from '../assets/images/eagle-angry.png'
 import useForm from '../hooks/useForm'
 import RoundedButton from './Shared/RoundedButton'
+import useStore from '../hooks/useStore'
+import api from '../services/api'
 
 const required = (value: any) => {
   return !Boolean(value) ? 'El campo es requerido' : ''
@@ -25,14 +27,23 @@ const Login = () => {
     },
   })
 
+  const [loading, setLoading] = useState(false)
+  const [_, dispatch] = useStore()
+
   const { user, password } = formController.controllers()
 
-  const submit = (e: any) => {
+  const submit = async (e: any) => {
     e.preventDefault()
     const isValid = formController.validateForm()
     if (!isValid) {
       return
     }
+    setLoading(true)
+    const success = await api.login(user.getValue(), password.getValue())
+    if (success) {
+      return dispatch({ type: 'LOGIN_SUCCESS', user: user.getValue() })
+    }
+    setLoading(false)
   }
 
   const valid = formController.isValid()
@@ -100,9 +111,24 @@ const Login = () => {
             margin-top: 1.5rem;
           `}
         />
-        <RoundedButton textColor="white" buttonColor="#f8b430">
-          Login
-        </RoundedButton>
+        {loading ? (
+          <span
+            css={css`
+              font-size: 2rem;
+              font-family: 'TrashHand';
+              text-align: center;
+              margin-top: 2rem;
+              padding: 18.5px 0;
+              color: #ff9500;
+            `}
+          >
+            Iniciando sesi&oacute;n...
+          </span>
+        ) : (
+          <RoundedButton textColor="white" buttonColor="#f8b430">
+            Login
+          </RoundedButton>
+        )}
       </form>
     </div>
   )

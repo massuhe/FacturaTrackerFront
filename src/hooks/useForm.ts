@@ -1,9 +1,8 @@
 import { useRef, useState } from 'react'
-import FormService from '../services/FormService'
-import {
+import FormService, {
   IFormControllerConfig,
   IFormController,
-} from '../services/FormService/formService'
+} from '../services/formService'
 
 export interface IController {
   value: any
